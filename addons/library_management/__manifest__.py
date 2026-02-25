@@ -7,4 +7,9 @@
     'data': [],
     'installable': True,
     'application': True,
+    'data': [
+        'views/book_views.xml',
+        'views/rent_views.xml',
+        'views/wizard_views.xml',
+    ],
 }

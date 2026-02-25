@@ -9,3 +9,13 @@ class LibraryBook(models.Model):
     author = fields.Char(string='Author')
     published_date = fields.Date(string='Published Date')
     is_available = fields.Boolean(string='Available', default=True)
+
+    def action_open_rent_wizard(self):
+        return {
+            'name': 'Rent Book',
+            'type': 'ir.actions.act_window',
+            'res_model': 'library.rent.wizard',
+            'view_mode': 'form',
+            'target': 'new',
+            'context': {'default_book_id': self.id},
+        }
