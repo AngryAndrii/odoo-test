@@ -2,14 +2,15 @@ from odoo import models, fields
 
 
 class LibraryBook(models.Model):
+    """Модель книжки"""
     _name = 'library.book'
     _description = 'Library Book'
 
     name = fields.Char(string='Book Title', required=True)
     author = fields.Char(string='Author')
     published_date = fields.Date(string='Published Date')
-    is_available = fields.Boolean(string='Available', default=True)
-
+    is_available = fields.Boolean(string='Available', default=True) # початково робимо всі нові книги доступними
+    # форма для оренди книги
     def action_open_rent_wizard(self):
         return {
             'name': 'Rent Book',

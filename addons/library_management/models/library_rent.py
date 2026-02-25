@@ -3,6 +3,7 @@ from odoo.exceptions import ValidationError
 
 
 class LibraryRent(models.Model):
+    """Модель оренди книг"""
     _name = 'library.rent'
     _description = 'Library Rent'
 
@@ -26,14 +27,13 @@ class LibraryRent(models.Model):
 
     return_date = fields.Date(string='Return Date')
 
-    # 🔒 Constraint: книга не може бути видана двічі
     @api.constrains('book_id', 'return_date')
     def _check_book_availability(self):
         for record in self:
             if not record.book_id:
                 continue
 
-            # шукаємо активні оренди цієї книги
+            # Перевіряємо, чи вже хтось орендував цю книгу
             existing_rent = self.search([
                 ('book_id', '=', record.book_id.id),
                 ('return_date', '=', False),
@@ -44,3 +44,15 @@ class LibraryRent(models.Model):
                 raise ValidationError(
                     "This book is already rented and not returned yet!"
                 )
+
+    def write(self, vals):
+        # Викликаємо стандартний write
+        res = super(LibraryRent, self).write(vals)
+
+        # Якщо оновлюється return_date, робимо книгу доступною
+        if 'return_date' in vals:
+            for rent in self:
+                if rent.return_date:
+                    rent.book_id.is_available = True
+
+        return res

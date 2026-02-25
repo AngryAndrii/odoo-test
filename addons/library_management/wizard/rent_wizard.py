@@ -8,10 +8,17 @@ class LibraryRentWizard(models.TransientModel):
     book_id = fields.Many2one('library.book', string="Book", required=True)
 
     def action_confirm_rent(self):
+        # Перевіряємо доступність книги
+        if not self.book_id.is_available:
+            raise ValidationError("This book is currently not available for rent!")
+
+        # Створюємо запис оренди
         rent = self.env['library.rent'].create({
             'partner_id': self.partner_id.id,
             'book_id': self.book_id.id,
         })
 
+        # Робимо книгу недоступною
         self.book_id.is_available = False
+
         return {'type': 'ir.actions.act_window_close'}

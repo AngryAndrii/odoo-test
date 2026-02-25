@@ -11,5 +11,6 @@
         'views/book_views.xml',
         'views/rent_views.xml',
         'views/wizard_views.xml',
+        'security/ir.model.access.csv',
     ],
 }
