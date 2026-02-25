@@ -40,11 +40,6 @@ class LibraryRent(models.Model):
                 ('id', '!=', record.id)
             ])
 
-            if existing_rent:
-                raise ValidationError(
-                    "This book is already rented and not returned yet!"
-                )
-
     def write(self, vals):
         # Викликаємо стандартний write
         res = super(LibraryRent, self).write(vals)
