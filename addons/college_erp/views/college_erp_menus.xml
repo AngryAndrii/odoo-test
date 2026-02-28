@@ -1,0 +1,6 @@
+<odoo>
+    <menuitem id="menu_college_erp_root" name="College ERP" sequence="1"/>
+    <menuitem id="menu_college_erp_student" name="Student" parent="menu_college_erp_root" sequence="1"/>
+    <menuitem id="menu_college_erp_student_student" name="Student" parent="menu_college_erp_student" sequence="2"/>
+    <menuitem id="menu_college_erp_student_admission" name="Admission" parent="menu_college_erp_student" sequence="3"/>
+</odoo>
