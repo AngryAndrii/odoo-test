@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="students_view_list" model="ir.ui.view">
+        <field name="name">college_student_view.list</field>
+        <field name="model">college.student</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="admission_no"/>
+                <field name="admission_date"/>
+                <field name="first_name"/>
+                <field name="last_name"/>
+                <field name="father_name"/>
+                <field name="mother_name"/>
+                <field name="communication_address"/>
+            </list>
+        </field>
+    </record>
+
+
+    <record id="college_student_view_form" model="ir.ui.view">
+        <field name="name">college_student_view.form</field>
+        <field name="model">college.student</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="admission_no"/>
+                        <field name="admission_date"/>
+                        <field name="first_name"/>
+                        <field name="last_name"/>
+                        <field name="father_name"/>
+                        <field name="mother_name"/>
+                        <field name="communication_address"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_college_erp" model="ir.actions.act_window">
+        <field name="name">College ERP</field>
+        <field name="res_model">college.student</field>
+        <field name="view_mode">list,form,kanban</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create your first student
+            </p>
+        </field>
+    </record>
+</odoo>

@@ -9,6 +9,8 @@
     'category': 'Education',
     'sequence': 1,
     'data': [
+        'views/college_student_views.xml',
         'views/college_erp_menus.xml',
+        'security/ir.model.access.csv',
     ],
 }
